@@ -557,7 +557,7 @@
     <!-- Women in IT Australia logo. Save the official logo image as
          "wit-logo.png" alongside this HTML file. -->
     <div class="logo-wrap">
-      <img src="/wit-logo.png" alt="Women in IT Australia">
+      <img src="wit-logo.png" alt="Women in IT Australia">
     </div>
 
     <div class="badge">Hackathon 2026 · Ideas. AI. Impact.</div>
@@ -663,7 +663,6 @@
               <option value="developer">Developer</option>
               <option value="tester">Tester</option>
               <option value="security">Security Specialist</option>
-              <option value="other">Other</option>
             </select>
             <span class="error-msg" id="roleErr">Please choose your hackathon role.</span>
           </div>
@@ -708,7 +707,7 @@
         <div class="fee-amount">$20 AUD</div>
       </div>
 
-      <!-- Payment Receipt Upload -->
+      <!-- NEW: Payment Receipt Upload -->
       <div class="section-gap">
         <div class="section-label">Payment Receipt</div>
         <div class="form-grid full">
@@ -752,9 +751,9 @@
     </form>
 
     <div class="footer-note">
-      Questions? Reach out at <a href="mailto:admin@womeninitmelbourne.org">admin@womeninitmelbourne.org</a><br>
+      Questions? Reach out at <a href="mailto:pavanichoudary89@gmail.com">pavanichoudary89@gmail.com</a><br>
       Registration closes 19 June 2026 or when capacity is reached.<br>
-      Share this page: <a href="https://womeninitmelbourne.org/WITHackathon2026/registration">womeninitmelbourne.org/WITHackathon2026/registration</a>
+      Share this page: <a href="https://womeninitmelbourne.org/WITHackathon2026/registration">womeninitmelbourne.org</a>
     </div>
 
   </div>
@@ -768,7 +767,7 @@
      deployed Google Apps Script (see google-apps-script.gs
      and SETUP-INSTRUCTIONS.md).
      ============================================================ */
-  const GOOGLE_SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzlRrTgcGn6dqNMaNaOAw9WwIVMDhzA9FHMjiko06xUyRXYiV3rtz-tsC-uSRnENk0e/exec';
+  const GOOGLE_SHEETS_ENDPOINT = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
   const form = document.getElementById('regForm');
   const success = document.getElementById('successScreen');
@@ -848,7 +847,7 @@
     const receipt   = receiptInput.files && receiptInput.files[0];
 
     // Names: only letters (incl. accented), spaces, hyphens, apostrophes
-    const NAME_RE  = /^[A-Za-zÀ-ɏ][A-Za-zÀ-ɏ'\- ]*$/;
+    const NAME_RE  = /^[A-Za-z\u00C0-\u024F][A-Za-z\u00C0-\u024F'\- ]*$/;
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     function setFieldError(errId, inputId, message) {
@@ -927,8 +926,10 @@
         submittedAt: new Date().toISOString()
       };
 
+      // The form will not work until GOOGLE_SHEETS_ENDPOINT is replaced
+      // with your deployed Apps Script Web App URL (see SETUP-INSTRUCTIONS.md).
       if (!GOOGLE_SHEETS_ENDPOINT || GOOGLE_SHEETS_ENDPOINT.startsWith('PASTE_')) {
-        throw new Error('Registration backend is not configured yet.');
+        throw new Error('Registration backend is not configured yet. The site owner needs to set GOOGLE_SHEETS_ENDPOINT in hackathon-registration.html (see SETUP-INSTRUCTIONS.md, Step 5).');
       }
       const res = await fetch(GOOGLE_SHEETS_ENDPOINT, {
         method: 'POST',
@@ -948,7 +949,7 @@
     } catch (err) {
       console.error(err);
       const detail = (err && err.message) ? ' (' + err.message + ')' : '';
-      submitError.textContent = 'Something went wrong submitting your registration' + detail + '. Please try again or email admin@womeninitmelbourne.org.';
+      submitError.textContent = 'Something went wrong submitting your registration' + detail + '. Please try again or email pavanichoudary89@gmail.com.';
       submitError.classList.add('visible');
     } finally {
       submitBtn.classList.remove('loading');
