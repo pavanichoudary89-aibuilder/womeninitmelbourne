@@ -1,0 +1,4 @@
+/WITHackathon2026/registration   /index.html   200
+/WITHackathon2026/registration/  /index.html   200
+/WITHackathon2026                /index.html   200
+/WITHackathon2026/               /index.html   200
