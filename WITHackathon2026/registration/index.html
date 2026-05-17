@@ -81,11 +81,14 @@
   .logo-wrap {
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: clamp(12px, 4vw, 28px);
     margin-bottom: 18px;
+    flex-wrap: nowrap;
   }
   .logo-wrap img {
-    width: 150px;
-    height: 150px;
+    width: clamp(80px, 24vw, 130px);
+    height: clamp(80px, 24vw, 130px);
     object-fit: contain;
     filter: drop-shadow(0 8px 24px rgba(124,58,237,0.3));
   }
