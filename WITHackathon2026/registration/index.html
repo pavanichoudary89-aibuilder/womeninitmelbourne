@@ -81,18 +81,14 @@
   .logo-wrap {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: clamp(12px, 4vw, 28px);
     margin-bottom: 18px;
-    flex-wrap: nowrap;
   }
   .logo-wrap img {
     width: clamp(280px, 90vw, 720px);
     max-width: 100%;
     height: auto;
-    object-fit: contain;
     filter: drop-shadow(0 8px 24px rgba(124,58,237,0.3));
-    flex-shrink: 0;
+    border-radius: 12px;
   }
 
   .badge {
@@ -308,6 +304,21 @@
     font-size: 11.5px;
     color: var(--text-muted);
     margin-top: 2px;
+  }
+
+  .refund-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: rgba(236,72,153,0.07);
+    border: 1px solid rgba(236,72,153,0.28);
+    border-radius: var(--radius);
+    padding: 11px 14px;
+    margin-top: 12px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--accent2);
+    line-height: 1.5;
   }
 
   .radio-group {
@@ -559,10 +570,10 @@
   <!-- Header -->
   <div class="header">
 
-    <!-- Women in IT Australia logo. Save the official logo image as
-         "wit-logo.png" alongside this HTML file. -->
+    <!-- Header logo. Save the combined logos image as "header-logos.png"
+         alongside this HTML file. -->
     <div class="logo-wrap">
-      <img src="header-logos.png" alt="Women in IT Australia">
+      <img src="header-logos.png" alt="Women in IT Australia &amp; Women in Cloud">
     </div>
 
     <div class="badge">Hackathon 2026 · Ideas. AI. Impact.</div>
@@ -599,7 +610,7 @@
     <div class="success-screen" id="successScreen">
       <div class="success-icon">🎉</div>
       <h2>Registration received!</h2>
-      <p>Thanks for signing up. Once our team verifies your<br>payment receipt, we'll send a confirmation email with<br>full event details and a calendar invite.</p>
+      <p>Thanks for signing up. Please allow 2–3 business days for our team to verify your payment receipt. Once confirmed, we'll send a confirmation email with full event details and a calendar invite.</p>
     </div>
 
     <!-- The Form -->
@@ -728,6 +739,7 @@
               <span class="file-name">Click to upload your payment receipt</span>
             </label>
             <div class="file-help">Accepted: JPG, PNG, or PDF · Max size 5 MB</div>
+            <div class="refund-note">⚠️ All payments made for this event are non-refundable.</div>
             <span class="error-msg" id="receiptErr">Please upload your payment receipt.</span>
           </div>
         </div>
@@ -756,7 +768,6 @@
     </form>
 
     <div class="footer-note">
-      Questions? Reach out at <a href="mailto:Simplegeeknotes@gmail.com">Simplegeeknotes@gmail.com</a><br>
       Registration closes 19 June 2026 or when capacity is reached.<br>
       Share this page: <a href="https://womeninitmelbourne.org/WITHackathon2026/registration">womeninitmelbourne.org</a>
     </div>
@@ -954,7 +965,7 @@
     } catch (err) {
       console.error(err);
       const detail = (err && err.message) ? ' (' + err.message + ')' : '';
-      submitError.textContent = 'Something went wrong submitting your registration' + detail + '. Please try again or Simplegeeknotes@gmail.com.';
+      submitError.textContent = 'Something went wrong submitting your registration' + detail + '. Please try again or email Simplegeeknotes@gmail.com.';
       submitError.classList.add('visible');
     } finally {
       submitBtn.classList.remove('loading');
